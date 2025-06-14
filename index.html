@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Resume - Kimberly G. Palen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-inner-content">
+                <div class="logo">
+                    <i class="fas fa-folder"></i> ONLINE RESUME
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#hero-section" class="active">Home</a></li>
+                        <li><a href="#about-me-section">About me</a></li>
+                        <li><a href="#skills-section">Skills</a></li>
+                        <li><a href="#projects-section">Projects</a></li>
+                        <li><a href="#">Contact Me</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <section class="hero-section" id="hero-section">
+            <div class="hero-left">
+                <p class="professional-title">Programmer</p>
+                <h1>Hello My Name Is</h1>
+                <h2>Kimberly G. Palen</h2>
+               
+                <div class="hero-buttons">
+                  
+                    <button class="hire-me-btn">Hire Me</button>
+                </div>
+            </div>
+            
+                <div class="resume-image-container">
+                    <img src="resume.png" alt="Resume Image" class="resume-image" ondragstart="return false;">
+                </div>
+            </div>
+        </section>
+
+        <section class="about-me-section" id="about-me-section">
+            <div class="about-left">
+                <img src="profile.png" alt="Marikannan C" class="profile-pic-bottom">
+            </div>
+            <div class="about-right">
+                <p class="section-info">Some Info</p>
+                <h3>About Me</h3>
+                <p class="about-description">
+                    Hello, I'm Kimberly G. Palen, a passionate Programmer with a keen eye for detail and a drive to create
+                    intuitive and beautiful digital experiences. I believe that design has the power to transform
+                    interactions and evoke emotions, and I'm dedicated to crafting solutions that seamlessly blend
+                    aesthetics and functionality.
+                </p>
+            </div>
+        </section>
+
+        <section class="skills-section" id="skills-section">
+            <h2>My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Laravel</span>
+                        <span class="skill-percentage">65%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 65%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Bootstrap</span>
+                        <span class="skill-percentage">60%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">NATIVE PHP</span>
+                        <span class="skill-percentage">75%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">MySQL</span>
+                        <span class="skill-percentage">70%</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section" id="projects-section">
+            <h2>My Projects</h2>
+            <p>Here you can find some of my recent projects.</p>
+            <!-- Project items will go here -->
+        </section>
+
+        <!-- Detailed Resume Modal Content (Hidden by default) -->
+        <div id="fullResumeModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <img src="resume.png" alt="Full Resume" class="full-resume-image">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = 80; // Approximate height of your fixed header
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        // Get the modal
+        const modal = document.getElementById("fullResumeModal");
+
+        // Get the image that opens the modal
+        const resumeImageContainer = document.querySelector(".resume-image-container");
+
+        // Get the <span> element that closes the modal
+        const span = document.querySelector(".close-button");
+
+        // When the user clicks on the image, open the modal
+        if (resumeImageContainer) {
+            resumeImageContainer.addEventListener('click', function() {
+                modal.style.display = "flex";
+                document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+            });
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        if (span) {
+            span.addEventListener('click', function() {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto"; // Re-enable scrolling
+            });
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto"; // Re-enable scrolling
+            }
+        });
+    </script>
+</body>
+</html> 
